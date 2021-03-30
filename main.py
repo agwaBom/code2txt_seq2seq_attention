@@ -140,12 +140,12 @@ def evaluate(encoder, decoder, sentence, max_length):
 
         return decoded_words, decoder_attentions[:i + 1]
 
-def evaluateRandomly(encoder, decoder, n=10):
+def evaluateRandomly(encoder, decoder, max_length ,n=10):
     for i in range(n):
         pair = random.choice(pairList)
         print('input:\t', pair[0])
         print('target:\t', pair[1])
-        output_words, attentions = evaluate(encoder, decoder, pair[0])
+        output_words, attentions = evaluate(encoder, decoder, pair[0], max_length=max_length)
         output_sentence = ' '.join(output_words)
         print('output:\t', output_sentence)
         print('')
@@ -187,7 +187,7 @@ if __name__ == '__main__':
 
     trainIters(encoder1, attn_decoder1, 75000, print_every=5000, max_length=max)
 
-    evaluateRandomly(encoder1, attn_decoder1)
+    evaluateRandomly(encoder1, attn_decoder1, max_length=max)
     """
     output_words, attentions = evaluate(
     encoder1, attn_decoder1, "je suis trop froid .")
