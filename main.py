@@ -13,6 +13,7 @@ plt.switch_backend('agg')
 import matplotlib.ticker as ticker
 import numpy as np
 from tqdm import tqdm
+from torch.utils.tensorboard import SummaryWriter
 
 import torch
 import torch.nn as nn
@@ -21,6 +22,7 @@ import torch.nn.functional as f
 import random
 import time
 
+writer = SummaryWriter('runs/experiment1')
 teacher_forcing_ratio = 0.5
 
 def train(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, decoder_optimizer, criterion, max_length):
@@ -81,7 +83,7 @@ def train(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, deco
 
     return loss.item() / target_length
 
-def trainIters(encoder, decoder, n_epoch, n_iters, max_length, print_every=100, plot_every=100, learning_rate=0.01):
+def trainIters(encoder, decoder, n_epoch, n_batch_size, max_length, learning_rate=0.01):
     start = time.time()
     plot_losses = []
     print_loss_total = 0  # Reset every print_every
@@ -96,7 +98,7 @@ def trainIters(encoder, decoder, n_epoch, n_iters, max_length, print_every=100, 
         # one epoch
         print(i, " Epoch...")
 
-        for iter in tqdm(range(1, n_iters + 1)):
+        for j in tqdm(range(1, n_batch_size + 1)):
             """
             training_pair : 0
             tensor([[     2],        
@@ -112,7 +114,7 @@ def trainIters(encoder, decoder, n_epoch, n_iters, max_length, print_every=100, 
                     [   8],        
                     [   1]]EOS, device='cuda:0')
             """
-            training_pair = training_pairs[iter - 1]
+            training_pair = training_pairs[j - 1]
             input_tensor = training_pair[0]
             target_tensor = training_pair[1]
             """
@@ -134,9 +136,12 @@ def trainIters(encoder, decoder, n_epoch, n_iters, max_length, print_every=100, 
                 print('Time elapsed : %s \tTime left : %d \tPercentage: %d%% \tml_loss : %.4f' % (h.timeSince(start, iter / n_iters),
                                             iter, iter / n_iters * 100, print_loss_avg))
             """
+            if j % 10 == 0:
+                writer.add_scalar('training loss', loss / 10, (i-1) * n_batch_size + (j-1))
+
 
         # Print Status
-        print_loss_avg = print_loss_total / print_every
+        print_loss_avg = print_loss_total / len(pairList)
         print_loss_total = 0
         print('Time elapsed : %s \tPercentage: %d%% \tml_loss : %.4f' % (h.timeSince(start, i / n_epoch),
                                             i / n_epoch * 100, print_loss_avg))
@@ -205,17 +210,25 @@ def evaluateRandomly(encoder, decoder, max_length ,n=3):
         print('')
 
 if __name__ == '__main__':
-    n_epoch = 100
-
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
     input_lang, output_lang, pairList, max = p.prepareData('code', 'text', False)
+    
+    # hyperparameter
     hidden_size = 256
+    n_epoch = 100
+    batch_size = len(pairList)
+    
     # input_lang.n_words = 총 input 데이터에서 나온 단어의 개수
     # ouput_lang.n_words = 총 tgt 데이터에서 나온 단어의 개수
     encoder1 = m.EncoderRNN(input_lang.n_words, hidden_size).to(device)
     attn_decoder1 = m.AttnDecoderRNN(hidden_size, output_lang.n_words, dropout_p=0.1, max_length=max).to(device)
+    
         
-    trainIters(encoder1, attn_decoder1, n_epoch, len(pairList), print_every=len(pairList), max_length=max)
+    trainIters(encoder1, attn_decoder1, n_epoch, batch_size, max_length=max)
+
+    # Tensorboard Network Visualizer
+    writer.add_graph(encoder1)
+    writer.add_graph(attn_decoder1)
+    writer.close()
 
     evaluateRandomly(encoder1, attn_decoder1, max_length=max)
