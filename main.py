@@ -6,6 +6,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="2"
 import preprocessing as p
 import model as m
 import helper as h
+import evaluation as e
 
 import matplotlib.pyplot as plt
 plt.switch_backend('agg')
@@ -70,7 +71,7 @@ def train(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, deco
 
     return loss.item() / target_length
 
-def trainIters(encoder, decoder, n_iters, max_length, print_every=1000, plot_every=100, learning_rate=0.01):
+def trainIters(encoder, decoder, n_epoch, n_iters, max_length, print_every=100, plot_every=100, learning_rate=0.01):
     start = time.time()
     plot_losses = []
     print_loss_total = 0  # Reset every print_every
@@ -78,32 +79,77 @@ def trainIters(encoder, decoder, n_iters, max_length, print_every=1000, plot_eve
 
     encoder_optimizer = optim.SGD(encoder.parameters(), lr=learning_rate)
     decoder_optimizer = optim.SGD(decoder.parameters(), lr=learning_rate)
-    training_pairs = [p.tensorsFromPair(input_lang, output_lang, random.choice(pairList))
-                      for i in range(n_iters)]
+
+    training_pairs = [p.tensorsFromPair(input_lang, output_lang, pairList[i]) for i in range(0, len(pairList))]
     criterion = nn.NLLLoss()
 
-    for iter in range(1, n_iters + 1):
-        training_pair = training_pairs[iter - 1]
-        input_tensor = training_pair[0]
-        target_tensor = training_pair[1]
+    for i in range(1, n_epoch + 1):
+        # one epoch
+        print(i, " Epoch...")
 
-        loss = train(input_tensor, target_tensor, encoder,
-                     decoder, encoder_optimizer, decoder_optimizer, criterion, max_length)
-        print_loss_total += loss
-        plot_loss_total += loss
+        for iter in range(1, n_iters + 1):
+            """
+            training_pair : 0
+            tensor([[     2],        
+                    [113078],        
+                    [   198],        
+                    [    26],        
+                    [ 20807],        
+                    [  1446],        [  3248],        [   477],        [ 69937],        [    18],        [   198],        [    18],        [ 10403],        [ 11969],        [     9],        [  3248],        [   231],        [    99],        [  3248],        [    18],        [113079],        [113080],        [    26],        [  1890],        [ 20807],        [  1446],        [  3248],        [    18],        [113079],        [113081],        [    26],        [   130],        [ 20807],        [  1446],        [    59],        [    26],        [ 19879],        [   148],        [    49],        [    36],        [  3248],        [    18],        [113079],        [113082],        [    26],        [ 19879],        [ 20807],        [  1446],        [    14],        [   417],        [  1328],        [    16],        [    73],        [    26],        [113083],        [  3248],        [    18],        [113084],        [   417],        [  1328],        [ 20807],        [  1446],        [  3248],        [    18],        [113085],        [ 11969],        [    18],        [    99],        [   255],        [ 20813],        [     9],        [  3248],        [   231],        [ 11969],        [    24],        [  1087],        [  3248],        [     1]], device='cuda:0')
 
-        if iter % print_every == 0:
-            print_loss_avg = print_loss_total / print_every
-            print_loss_total = 0
-            print('%s (%d %d%%) %.4f' % (h.timeSince(start, iter / n_iters),
-                                         iter, iter / n_iters * 100, print_loss_avg))
+            training_pair : 1
+            tensor([[ 910],        
+                    [6135],        
+                    [   8],        
+                    [   1]]EOS, device='cuda:0')
+            """
+            training_pair = training_pairs[iter - 1]
+            input_tensor = training_pair[0]
+            target_tensor = training_pair[1]
+            """
+            # Access dictionary using []
+            print(training_pair[0][0].item())
+            print(training_pair[0][1].item())
+            print(len(training_pair[0]))
+            print([input_lang.index2word[training_pair[0][i].item()] for i in range(0, len(training_pair[0]))])
+            print([output_lang.index2word[training_pair[1][i].item()] for i in range(0, len(training_pair[1]))])
+            """
 
-        if iter % plot_every == 0:
-            plot_loss_avg = plot_loss_total / plot_every
-            plot_losses.append(plot_loss_avg)
-            plot_loss_total = 0
+            loss = train(input_tensor, target_tensor, encoder,
+                        decoder, encoder_optimizer, decoder_optimizer, criterion, max_length)
+            print_loss_total += loss
+            plot_loss_total += loss
+
+            if iter % print_every == 0:
+                print_loss_avg = print_loss_total / print_every
+                print_loss_total = 0
+                print('%s (%d %d%%) %.4f' % (h.timeSince(start, iter / n_iters),
+                                            iter, iter / n_iters * 100, print_loss_avg))
+
+            if iter % plot_every == 0:
+                plot_loss_avg = plot_loss_total / plot_every
+                plot_losses.append(plot_loss_avg)
+                plot_loss_total = 0
+
+        # [input & target] pair [0][0]-src [0][1]-tgt
+        hypothesis_list, reference_list = make_hypothesis_reference(encoder, decoder, pairList, max_length)
+        bleu, rouge_l, meteor, precision, recall, f1 = e.eval_accuracies(hypothesis_list, reference_list)
+        print("\nbleu : %f\trouge_l : %f\tmeteor : %f\tprecision : %f\trecall : %f\tf1 : %f\t" %(bleu, rouge_l, meteor, precision, recall, f1))
+        print("\n")
+        # Random Evaluation
+        evaluateRandomly(encoder, decoder, max_length)
 
     h.showPlot(plot_losses)
+
+def make_hypothesis_reference(encoder, decoder, pairList, max_length):
+    hypothesis_list, reference_list = dict(), dict()
+    for i in range(0, len(pairList)):
+        output_words, _ = evaluate(encoder, decoder, pairList[i][0], max_length=max_length)
+
+        hypothesis_list[i] = [' '.join(output_words)]
+        reference_list[i] = [pairList[i][1]]
+
+    return hypothesis_list, reference_list
 
 def evaluate(encoder, decoder, sentence, max_length):
     with torch.no_grad():
@@ -140,7 +186,7 @@ def evaluate(encoder, decoder, sentence, max_length):
 
         return decoded_words, decoder_attentions[:i + 1]
 
-def evaluateRandomly(encoder, decoder, max_length ,n=10):
+def evaluateRandomly(encoder, decoder, max_length ,n=3):
     for i in range(n):
         pair = random.choice(pairList)
         print('input:\t', pair[0])
@@ -178,14 +224,16 @@ def evaluateAndShowAttention(input_sentence):
 
 
 if __name__ == '__main__':
+    n_epoch = 100
+
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     input_lang, output_lang, pairList, max = p.prepareData('code', 'text', False)
     hidden_size = 256
     encoder1 = m.EncoderRNN(input_lang.n_words, hidden_size).to(device)
     attn_decoder1 = m.AttnDecoderRNN(hidden_size, output_lang.n_words, dropout_p=0.1, max_length=max).to(device)
-
-    trainIters(encoder1, attn_decoder1, 75000, print_every=5000, max_length=max)
+        
+    trainIters(encoder1, attn_decoder1, n_epoch, len(pairList), print_every=100, max_length=max)
 
     evaluateRandomly(encoder1, attn_decoder1, max_length=max)
     """

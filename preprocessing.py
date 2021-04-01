@@ -49,9 +49,9 @@ def normalizeString(str):
 
 def readLangs(lang1, lang2, reverse=False):
     print("Reading Source Code...")
-    source = open("./data/python/dev/code.original").read().strip().split('\n')
+    source = open("./data/python/debug/code.original_subtoken").read().strip().split('\n')
     print("Reading Target...")
-    target = open("./data/python/dev/javadoc.original").read().strip().split('\n')
+    target = open("./data/python/debug/javadoc.original").read().strip().split('\n')
 
     # Read the file and split into lines
     #lines = open("./data/%s-%s.txt" % (lang1, lang2), encoding='utf-8').read().strip().split('\n')
