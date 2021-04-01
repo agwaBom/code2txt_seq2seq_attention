@@ -1,6 +1,7 @@
 import unicodedata
 import re
 import torch
+from tqdm import tqdm 
 from model import device
 from io import open
 
@@ -48,9 +49,9 @@ def normalizeString(str):
     return str
 
 def readLangs(lang1, lang2, reverse=False):
-    print("Reading Source Code...")
+    print("Reading Source Code...\n")
     source = open("./data/python/debug/code.original_subtoken").read().strip().split('\n')
-    print("Reading Target...")
+    print("Reading Target...\n")
     target = open("./data/python/debug/javadoc.original").read().strip().split('\n')
 
     # Read the file and split into lines
@@ -62,7 +63,8 @@ def readLangs(lang1, lang2, reverse=False):
     # normalizeString(s) -> 'Cours !'
 
     #pairs = [[normalizeString(s) for s in l.split('\t')] for l in lines]
-    pairs = [[i, j]for i, j in zip(source, target)]
+    print("Pairing source and target")
+    pairs = [[i, j]for i, j in tqdm(zip(source, target))]
 
     max = 0
     for i in range(0, len(pairs)):
@@ -80,36 +82,16 @@ def readLangs(lang1, lang2, reverse=False):
         
     return input_lang, output_lang, pairs, max
 
-# we’ll trim the data set to only relatively short and simple sentences.
 
-eng_prefixes = (
-    "i am ", "i m ",
-    "he is", "he s ",
-    "she is", "she s ",
-    "you are", "you re ",
-    "we are", "we re "
-)
-"""
-def filterPair(pair):
-    return len(pair[0].split(' ')) < MAX_LENGTH and \
-           len(pair[1].split(' ')) < MAX_LENGTH and \
-           pair[1].startswith(eng_prefixes)
-
-def filterMultiplePairs(pairList):
-    return [pair for pair in pairList if filterPair(pair)]
-"""
 def prepareData(lang1, lang2, reverse=False):
     input_lang, output_lang, pairList, max = readLangs(lang1, lang2, reverse)
-    print("Read %s sentence pairs" % len(pairList))
-    # pairList = filterMultiplePairs(pairList)
-    print("Trimmed to %s sentence pairs" % len(pairList))
+    print("Read %s sentence pairs\n" % len(pairList))
     print("Counting words...")
-    for pair in pairList:
+    for pair in tqdm(pairList):
         input_lang.addSentence(pair[0])
         output_lang.addSentence(pair[1])
     print("Counted words: ")
-    print(input_lang.name, input_lang.n_words)
-    print(output_lang.name, output_lang.n_words)
+    print(input_lang.name, input_lang.n_words, output_lang.name, output_lang.n_words)
     return input_lang, output_lang, pairList, max
 
 
