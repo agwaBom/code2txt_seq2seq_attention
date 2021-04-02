@@ -48,23 +48,13 @@ def normalizeString(str):
     str = re.sub(r"[^a-zA-Z.!?]+", r" ", str)
     return str
 
-def readLangs(lang1, lang2, reverse=False):
-    print("Reading Source Code...\n")
-    source = open("./data/python/debug/code.original_subtoken").read().strip().split('\n')
-    print("Reading Target...\n")
-    target = open("./data/python/debug/javadoc.original").read().strip().split('\n')
-
-    # Read the file and split into lines
-    #lines = open("./data/%s-%s.txt" % (lang1, lang2), encoding='utf-8').read().strip().split('\n')
-
-
-    # Split every line into pairs and normalize
-    # s = 'Cours\u202f!'
-    # normalizeString(s) -> 'Cours !'
-
-    #pairs = [[normalizeString(s) for s in l.split('\t')] for l in lines]
+def readLangs(lang1, lang2, src_dir, tgt_dir, reverse=False):
+    print("Reading Source Code...")
+    source = open(src_dir).read().strip().split('\n')
+    print("Reading Target...")
+    target = open(tgt_dir).read().strip().split('\n')
     print("Pairing source and target")
-    pairs = [[i, j]for i, j in tqdm(zip(source, target))]
+    pairs = [[i, j]for i, j in zip(source, target)]
 
     max = 0
     for i in range(0, len(pairs)):
@@ -83,15 +73,16 @@ def readLangs(lang1, lang2, reverse=False):
     return input_lang, output_lang, pairs, max
 
 
-def prepareData(lang1, lang2, reverse=False):
-    input_lang, output_lang, pairList, max = readLangs(lang1, lang2, reverse)
+def prepareData(lang1, lang2, src_dir, tgt_dir,reverse=False):
+    input_lang, output_lang, pairList, max = readLangs(lang1, lang2, src_dir, tgt_dir, reverse)
     print("Read %s sentence pairs\n" % len(pairList))
     print("Counting words...")
     for pair in tqdm(pairList):
         input_lang.addSentence(pair[0])
         output_lang.addSentence(pair[1])
     print("Counted words: ")
-    print(input_lang.name, input_lang.n_words, output_lang.name, output_lang.n_words)
+    print(input_lang.name, input_lang.n_words, output_lang.name, output_lang.n_words, "\n")
+    print("max_sentence : ", max)
     return input_lang, output_lang, pairList, max
 
 

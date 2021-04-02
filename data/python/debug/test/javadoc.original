@@ -1,0 +1,400 @@
+patch a resource .
+yield images of the laplacian pyramid formed by the input image .
+return a dict of the last function called for all minions .
+return list of paths that may contain available services .
+store a temporary file .
+create the output directory .
+get the integer value of a hexadecimal number .
+set the size of a finder window for folder to .
+backport of os .
+extract the filename if a url is an uploaded file .
+test setting up other volume source spaces .
+get latex preamble from rc .
+compute the generalized s-polynomial of f and g .
+deleted col of volume_type_projects converted .
+perform static object analysis on all python files in the project note that this might be really time consuming .
+return a shortened version string .
+modifies the main help menu to handle all registered help files .
+redirects to the specified location using the provided http_code .
+returns: - the first command when confirmation disabled; - none when ctrl+c pressed; - selected command .
+helper function to get linear projection or partialling out of variables endog variables are projected on exog variables parameters endog : ndarray array of variables where the effect of exog is partialled out .
+update composer dependencies for a directory .
+fetch targets and calculate the modules output on dataset .
+tests socket .
+get the path from the edge intersections .
+show a modeljob returns json when requested: {id .
+implements the c expression: condition ? true : false required to correctly interpret plural forms .
+returns true/false boolean depending on if botocore supports usage plan .
+return the load data that marks a specified jid .
+show runtime-editable configuration option .
+decorator to add a default structuring element to morphology functions .
+helper function to load a module while setting sys .
+move prepared osm data from temporary to permanent tables .
+returns object if t is of the form (1+exp(x)) .
+round a to the nearest integer if that integer is within an epsilon of a .
+returns a string suitable for rfc 2822 compliant message-id .
+returns the linode id for a vm from the provided name .
+a wrapper around astropy .
+generate a csv file containing a summary of the xblock usage arguments: course_data : a list of course_data objects returns: nothing .
+regression test .
+returns true if the given estimator is a classifier .
+uses heuristics to guess whether the given file is text or binary .
+return the full url to the bootstrap css library default value: none this value is configurable .
+get objects of the type .
+expand shell variables of form $var and ${var} .
+get new repository .
+retrieves the block types from the provided xblock configuration json file arguments: xblock_json_file : the name of the xblock configuration file :return: set: a set of strings for all the types that are available in the configuration file .
+validates the inputs to the actions in a target .
+verify that *cert* (in decoded format as returned by sslsocket .
+compute f/a where f in gf(p)[x] and a in gf(p) .
+builds connection and search arguments .
+test the fitting method .
+this criteria is alerted if metrics data is completely missing at a timestamp .
+a helpful decorator which can switch the flag values temporarily .
+this method returns the entity of the element which link points to .
+bind cli arguments to a shell .
+from pep-318 URL#examples .
+checks if given contents begins with a pseudo-open-pgp-style block and .
+the directory that we check out our bundles to .
+get the top 10 keywords and their frequency scores ignores blacklisted words in stopwords .
+escape commas .
+cleanup after ci_build .
+encode a string using the standard base64 alphabet .
+import content from buf and return a python ast .
+merge dictionaries and apply function to combined values a key may occur in more than one dict .
+generates a list of colors based on a list of names .
+convert a multidict containing form data into a regular dict .
+check whether ldap authentication can be enabled .
+escape html in json value .
+sanitize a string .
+dummy implementation of thread .
+get summarize health this provides a summary of the health of the managed system .
+checks to see if the function is marked as not requiring authentication with the @unauthenticated decorator .
+used to instruct the agent to force a node into the left state .
+a convenience method for making a dist given just a name and version .
+install the pre-requisites for pip installation of the flocker client .
+compute polynomial pseudo-division of f and g .
+count occurrences of elements in this column sort by counts by default add sort=false keyword to avoid this behavior .
+return a list of tuples where s is the largest subset of elements that appear in pairs of sets given by sets and l is a list of tuples giving the indices of the pairs of sets in which those elements appeared .
+dump object to string .
+return a chunk from a file based on the data received .
+unconditionally skip a test .
+setup x10 switches over a mochad controller .
+test to ensure the custom boolean type correctly supports boolean conversion .
+set the default colormap to jet and apply to current image if any .
+the basic permission-checker only for player objects .
+unregister a previously registered hosting service .
+notice when hangup or timeout .
+convenience method for executing operating system commands .
+converts an sslerror .
+make every worker ignore keyboarinterrups since it will be handled by the parent process .
+rather basic .
+break text down into ngrams .
+convert an file system path to a uri portion that is suitable for inclusion in a url .
+format a string of python code .
+please note: this method must be called right before an expected alert window variables are page local and thus all changes are removed upon navigating to a new page in addition .
+convenience function for getting the text to use for a match when formatting .
+when calculating result rank .
+return an unused filename with the same extension as the specified path .
+return a random url-safe text string .
+sets up a logger for console output .
+return a saturated color .
+return an absolute path .
+convert lat/lon pair to alphanumeric utm zone .
+create a continuous query .
+return the current time as yymmdd .
+plugins command sub group .
+initialize data for :func:idz_frm .
+runs gdb in --batch mode with the additional arguments given by *args .
+instructs chocolatey to uninstall a package .
+create a certificate file .
+returns the fasta labels as a list input_fasta_fp: fasta filepath .
+returns the reverse of a 1-in-n binary encoding .
+internal method shared between requestmanager and _getremoteappid .
+openbsd specific helper function .
+in place left precedent dictionary merge .
+get mac address from domain xml .
+on delete of the version object call the file delete and signals .
+a pre-configured wrapper around the app validator .
+input a list of list .
+turn x into a sequence or ndarray .
+walk from the root up to a directory and verify that the current user has access to read each directory .
+works exactly like :func:dumps but is safe for use in <script> tags .
+set and retrieve the value of response .
+glob function for a pattern that do not contain wildcards .
+require a working copy of the repository from the remote_url .
+convert camelcase style naming to underscore style naming e .
+get path from prefix and xml element .
+retain reads where the id is in ids_to_keep but not in ids_to_remove .
+run sysctl command cmd .
+add a remote git repository into a directory .
+pure implementation of binary search algorithm in python using stdlib be careful collection must be sorted .
+try rechunking a random 1d matrix .
+a convenience wrapper for memoizing instance methods .
+rekey the encrypted participant identity information in our database .
+returns the modules list of output filters .
+instantiate an input data placeholder variable .
+get duration of media descriptor object item .
+initialize the zone interval and the zzone table .
+returns a sign up form via the django-registration app if the url is valid .
+generate code specific to the execution of the sklearn pipeline parameters pipeline_code: str code that defines the final sklearn pipeline returns source code for the sklearn pipeline and calls to fit and predict .
+insert empty lines so that all sources has matching line numbers for the same code .
+deletes the account password .
+check the warning is suppressed or not .
+get the count of objects for a namespace .
+first nibble hex encoding method .
+bug #17541 .
+constant_expression_opt : constant_expression .
+finds the best match for target_name out of names using the nginx name-matching rules .
+parse option passed to --test-files into a key-value pair .
+flush task spool .
+test of average obtained vs c code .
+set the integer to the string .
+psutil variant of the open port check .
+bootstrapped version of mann-whitney-u test parameters x : array-like list or array of numeric values to be tested .
+set the host .
+aux function .
+return the list of all graphs with up to seven nodes named in the graph atlas .
+determine default project explicitly or implicitly as fall-back .
+return the effective number of cpus in the system as an integer .
+return the full path to the first match of the given command on the path .
+produces unwrapped lines from the given code .
+convert an internationalized resource identifier portion to a uri portion that is suitable for inclusion in a url .
+when we change ui -> message-timeout .
+returns a date column as a date object: .
+this is a wrapper for variable_from_module that requires return value to be a string to pass .
+calls upload either with a local audio file .
+get the hipchat options from salt .
+parses a file or directory to a corresponding model object .
+helper to check regularization .
+this function converts the six .
+calculates a pearson correlation coefficient and the p-value for testing non-correlation .
+returns a group detail page .
+get security group models for a project by a list of names .
+this function takes in a url for a zip file .
+use this decorator to enable granular security permissions to your methods .
+shift images with the same arguments .
+return standardized format for lists/dictionaries .
+raise an error if the string has any punctuation characters .
+context processor that provides a csrf token .
+generic table writer .
+decode html entities in the given text .
+execp execute the executable file with argument list args .
+read a string tag .
+shutdown a running veil-evasion rpc server on a specified port .
+return a list of current moosefs mounts cli example: .
+return timezone-aware now .
+move backward through the list of possible completions .
+helper function to retrieve the full policy name if needed .
+tests if a protocol mismatch handshake warns and returns none .
+returns the default collection .
+synchronize with remote repository incorporates recent changes from the remote repository into the local repository .
+split -> list of strings return a list of the words in the string s .
+choose multiple options from a list .
+return the contents of a named file as a list of lines .
+return git revision for the repository located at repopath result is a tuple .
+adds the "vary" header in the given httpresponse object .
+division of two terms in over a ring/field .
+get current directories of cwd in order to restore to this .
+loads and returns a template for the given name .
+splittype --> type .
+return a list of strings in colon-hex format representing all the link local ipv6 addresses available on the system .
+returns a memcache key for an exploration .
+define type match with given value .
+aux function .
+return a list of all files on the file server in a specified environment .
+get department of the user in session 获取session中用户的部门 .
+determine if the current environment is compute engine .
+plugin" for handling scp transfers using pexpect .
+create tarball for june .
+helper function to return a url pattern for serving files in debug mode .
+retry the interaction .
+return the number of physical cores in the system .
+get manifest resources from file .
+set the position of a finder window for folder to pos= .
+calculate parameters needed for instantiating xmodule instances .
+build lookup for synset to human-readable label .
+this method updates all configuration default values .
+floors a given datetime to utc midnight .
+i havent found a neat way to pull raw bytes out of scapy packets .
+ensure the firewall-cmd is available .
+a file should is able to be closed twice without raising .
+build docs with mkdocs .
+istantiates a strictredis connection with parameters .
+view the history of query .
+visualize samples and labels produced by gsn .
+test if docstrings are well formatted .
+list maintenance windows belonging to this account cli example: salt myminion pagerduty .
+check to see if stddev/variance tests should be run .
+asset edit page .
+check to see if the given modelname exists in the given restapiid cli example: .
+awards enrollment badge to the given user on new enrollments .
+remove an lvm volume group cli examples: .
+validator for node#title .
+make dependency links fully-qualified relative to the current directory .
+return chrome_extensions information from osquery cli example: .
+return device_owner names for allowed_addr_pair ports serviced by dvr this just returns the device owners that are used by the allowed_address_pair ports .
+read only the header of a tag .
+read and format tooltips .
+search for an address space .
+temporarily chown a path .
+properly rename a node .
+set the global serializer used by all class in cssutils .
+does this queue exist .
+deletes a job entry based on its tag .
+pads a rectangular image with transparency to make it square .
+creates a json with the grade distribution for all the problems in the course .
+add infill boundary to the nested ring that contains it .
+custom completer dispatching for python objects .
+only load if the portage_config module is available in __salt__ .
+sets the current device .
+creates a new struct class .
+add another node into the peer list .
+only load if requests is installed .
+return an integer corresponding to the base-2 digits given by term .
+perform http request using mpsyt user agent header .
+list of codons according to full_rf_table for counting .
+a replacement for django .
+load plugins from the standard plugin paths .
+seek in the named broadcast .
+traverse the given expression structure .
+build the source tarball .
+given the path (of a conda installed file) iterate over the conda packages the file came from .
+check that the model is able to fit the classification data .
+check that the value is a list of ip addresses .
+notifies the user about failed challenges .
+setup the scsgate switches .
+prohibit the deletion of a port thats used in a trunk .
+returns the equivalent of the http requests script_name environment variable .
+return an unindented version of a docstring .
+returns 1 if the perceptron fires .
+find users that do not have permissions on new_node .
+load the scheme scheme from a file and return its svg image representation .
+convert a datetime object to an integer number of seconds since the unix epoch .
+given a course id and thread id .
+move a file or directory .
+if the items are tagged with a musicbrainz album id .
+use reg .
+create a dict from an instance of a securityrule .
+see if the move command exists .
+automatically log the current function details .
+makes boxplot trace for decreasing candlesticks .
+reverse a tensor along the the specified axes .
+takes a hex sha and returns its filename relative to the given path .
+cochrans q test for identical binomial proportions .
+perform some action that affects the outside world .
+subtracts the given means from each image channel .
+send e-mail when an api token is created or updated .
+return the first configured instance .
+decorates a function to be called by the bot every x seconds .
+if zoning is enabled .
+automatically fill out the legend based on series labels .
+yaml: openshift-img-tagger performs the equivalent of an oc tag command invocation in order to manipulate tags for images in openshift imagestreams requires the jenkins :jenkins-wiki:openshift pipeline plugin <openshift+pipeline+plugin> .
+return the hits authority matrix .
+makes the x-axis for a violin plot .
+a demonstration of the earley parsers .
+given a class .
+returns a value associated with the requests microsite .
+reduce elems using fn to combine them from right to left .
+print details of a baremetal resource .
+annotated-heatmap-specific validations check that if a text matrix is supplied .
+returns the proper template based on the objects content_type .
+compute default inverse-document-frequency for a term with document frequency doc_freq:: idf = add + log .
+retrieve mapping definition of index or index/type cli example:: salt myminion elasticsearch .
+return true if and only if the avas are equal .
+generate an iterable of endpoint objects given this input data .
+returns true if the given resource view should be displayed in an iframe .
+get the absolute frozen folder path .
+check for packet configs .
+conditional decorator that loads edxnotes only when they exist .
+create a nvp logical router on the specified cluster .
+update status line .
+avoid extraneous whitespace in the following situations: - more than one space around an assignment operator to align it with another .
+return a list of the vms that are on the provider .
+for a specific format type .
+prints usage information and exits with a status code .
+stores a record id for a resource in a session .
+returns a hashdigest of path .
+apply image adjustments one by one and return a modified image .
+deal with horizontal shift of the viewport .
+provides access to a static selectionmodel instance .
+return the tutte graph .
+process a .
+serialize obj as a json formatted stream to fp (a .
+unlike the standard assertraises .
+build an image encoded in base64 .
+decorator to run a synchronous method asynchronously on an executor .
+n is the number of neurons in the fully-connected layer .
+saves video module with updated values of fields .
+get the subdirectories within a package this will include resources and submodules .
+construct a polynomial from an expression .
+list all keys .
+returns a list of tag dicts .
+get a free ip range .
+authenticate using cram-md5 .
+sets a dirty flag for the current thread and code streak .
+test make_imbalance .
+detect if the element is trapped inside a nested bind: tag relative to e :type root: uielement :type e: uielement :rtype: bool .
+delete a flavor from nova by id cli example: .
+convert doctest tests for a module to a unittest test suite .
+checks if a user of a mongodb database has specified roles cli examples: .
+doc is the already-handled document ; here we add <ins>ins_chunks</ins> to the end of that .
+convert task to dict for json rendering .
+returns an array of the display names for each section in the course .
+attempts to decode a bytestring path to a unicode object for the purpose of displaying it to the user .
+ensures that history not changed .
+convert a matplotlib figure to vega dictionary if notebook=true .
+secondary structure symbol to index .
+checks whether the following properties of two results match: * origin * message * severity * debug_msg .
+creates a list of prepopulated_fields that should render javascript for the prepopulated fields for both the admin form and inlines .
+return list notifications .
+splits message into chops that are at most as long as n .
+stage osm data into a temporary set of tables using osm2pgsql .
+fixture to return a valid template_name .
+check if the user_data is encoded properly .
+test that stdout logs use debug format and level .
+test whether filename matches pattern .
+update the users that contributed yesterday .
+take a list of stylesheet names and return appropriate string of link tags .
+logs out the user and displays you are logged out message .
+bilogistic model of coles and tawn 1994 .
+define a l2 regularizer .
+update a metadef tag .
+decoder doing html unescaping .
+execute celery tasks .
+return trailing coefficient of f .
+used to return whether course has shibboleth as the enrollment domain returns a boolean indicating if shibboleth authentication is set for this course .
+get current environment and add pythonpath .
+compute tapered spectra .
+calls runtimeelement .
+output database definition .
+returns the temp directory that should be used by qiime scripts .
+returns an ordereddict that maps a scorable blocks id to its headers in the final report .
+fixture to provide a test instance of hass .
+gets the account id portion of an arn .
+expression : name .
+calculates the diffs to all files in file_dict that describe the removal of each respective results affected code .
+returns a temporary directory .
+run the command specified by the passed positional arguments .
+given a sequence .
+rolling back to zero-state .
+apply python string formatting on an object: .
+return string output for the sql to be run .
+install a package .
+return ipythons guess for the default encoding for bytes as text .
+a first component .
+return a list of refs that can be used as environments .
+perform an ns record lookup .
+publish real-time updates via redis .
+convert central to non-central moments .
+get the m format key string from row & column .
+this function allows logging in without a password on the zulip mobile apps when connecting to a zulip development environment .
+returns the version of the installed syslog-ng .
+test the option to shortened the users list to a certain size .
+return a list of all non-overlapping matches in the string .
+load tweets from file into dict .
+test core .
+translate an application error to a channel error .
+raises argumenterror when objects in list_ are not instances of cls .
+send pending sms messages .
+escape special characters from a command so that it can be passed as a double quoted string in a sh command .
