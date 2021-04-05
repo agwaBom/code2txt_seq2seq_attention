@@ -4,7 +4,8 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"]="2"
 
 import preprocessing as p
-import model as m
+import models.seq2seq_attn as m
+import models.bilstm as bilstm
 import helper as h
 import evaluation as e
 
@@ -22,7 +23,7 @@ import torch.nn.functional as f
 import random
 import time
 
-writer = SummaryWriter('runs/experiment2')
+writer = SummaryWriter('runs/experiment3')
 
 teacher_forcing_ratio = 0.5
 
@@ -274,8 +275,6 @@ if __name__ == '__main__':
     trainIters(encoder1, attn_decoder1, n_epoch, max_length=max)
 
     # Tensorboard Network Visualizer
-    writer.add_graph(encoder1)
-    writer.add_graph(attn_decoder1)
+    # writer.add_graph(encoder1)
+    # writer.add_graph(attn_decoder1)
     writer.close()
-
-    evaluateRandomly(encoder1, attn_decoder1, max_length=max)
